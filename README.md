@@ -1,10 +1,35 @@
-# excel-data-process-with-springboot-sqlite-base64
-Saving Excel File to SQLite Database with Spring Boot, encode and decode operations using Base64
+# Excel Data Process With Spring Boot SQLite Base64
+## Purpose 
+- Saving Excel File to SQLite Database with Spring Boot, encode and decode operations using Base64
 
-Excel dosyasını DB ye kaydetmek için POST metodu yazılmıştır.
-http://localhost:4000/save ENDPOINTine gidip file yüklenir.
-POSTMAN kullanıyorsanız KEY:file VALUE:seçilen dosya olmalıdır.
-Dosya DB ye kaydedilirken tc ler BASE64 ile şifrelenir.
+- POST method is written to save the Excel file to the DB. Go to http://localhost:4000/save ENDPOINT and upload the file. If you are using POSTMAN, KEY:file should be VALUE:the selected file. While saving the file to DB, TC numbers are encrypted with BASE64.
 
-Excel Dosyasındaki Verileri DB den getirme işlemi sırasında ilk olarak BASE64 ile şifrelenen veriler çözülmüştür.
-Böylece GET metodunu http://localhost:4000/getdata ENDPOINTi ile çağırdığımızda orijinal veriyi elde ederiz.
+- During the process of fetching the Data in the Excel File from the DB, the data encrypted with BASE64 was first decrypted. So when we call the GET method with http://localhost:4000/getdata ENDPOINTi we get the original data.
+
+## Technologies
+- Java 17
+- Spring Boot 2.7.10
+- Maven
+- SQLite
+- Base64
+
+## Features
+- Save Data from Excel to SQLite Database 
+- Get Data from SQLite
+
+## Base64
+#### Encode
+```java
+    public static String encode(String plainText) {
+        byte[] plainTextBytes = plainText.getBytes();
+        return Base64.getEncoder().encodeToString(plainTextBytes);
+    }
+```
+#### Decode
+```java
+    public static String decode(String base64Text) {
+        byte[] decodedBytes = Base64.getDecoder().decode(base64Text);
+        return new String(decodedBytes);
+    }
+```
+
