@@ -67,9 +67,9 @@ public class StudentServiceImpl implements StudentService {
             student.setTc(decodedTcs);
         }
 
-        List<Student> students = studentRepository.findAll();
+        return studentRepository.findAll();
 
-        return students;
+        //return studentRepository.findAll(); //ŞİFRELİ ŞEKLİYLE GÖRÜNTÜLEMEK İSTERSEK
     }
 
 
